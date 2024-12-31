@@ -17,3 +17,17 @@ jobs:
         repository: nzolot/repo-dst
         event: run
         github_pat: ${{ secrets.PAT }}
+
+  trigger-repob-workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v6
+    with:
+        github-token: ${{ secrets.PAT }}
+        script: |
+        await github.rest.actions.createworkflowDispatch({
+            owner: 'nzolot',
+            repo: 'repo-dst',
+            workflow_id: 'job.yaml',
+            ref: 'main'
+        })
