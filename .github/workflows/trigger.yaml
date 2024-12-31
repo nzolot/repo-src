@@ -1,0 +1,19 @@
+---
+
+name: Trigger Target Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    name: "Trigger Project Test"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: passeidireto/trigger-external-workflow-action@main
+      env:
+        PAYLOAD_AUTHOR: ${{ github.author }}
+      with:
+        repository: nzolot/repo-dst
+        event: run
+        github_pat: ${{ secrets.PAT }}
