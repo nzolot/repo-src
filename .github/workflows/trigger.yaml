@@ -23,11 +23,11 @@ jobs:
     steps:
     - uses: actions/github-script@v6
     with:
-        github-token: ${{ secrets.PAT }}
-        script: |
+      github-token: ${{ secrets.PAT }}
+      script: |
         await github.rest.actions.createworkflowDispatch({
-            owner: 'nzolot',
-            repo: 'repo-dst',
-            workflow_id: 'job.yaml',
-            ref: 'main'
+          owner: 'nzolot',
+          repo: 'repo-dst',
+          workflow_id: 'job.yaml',
+          ref: 'main'
         })
