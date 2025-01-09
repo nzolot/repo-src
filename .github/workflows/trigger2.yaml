@@ -24,4 +24,4 @@ jobs:
       - name: Trigger
         run: gh workflow run --repo nzolot/repo-dst
         env:
-          GITHUB_TOKEN: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
