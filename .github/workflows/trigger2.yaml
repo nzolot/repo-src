@@ -26,6 +26,6 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
       - name: Trigger
-        run: gh workflow run --repo nzolot/repo-dst
+        run: gh workflow run Terraform:Deploy-generic --repo nzolot/repo-dst
         env:
           GH_TOKEN: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
