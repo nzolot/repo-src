@@ -1,0 +1,26 @@
+---
+
+name: Trigger Target Workflow2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  my_job:
+    name: Send a Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install gha-token
+        run: python3.11 -m pip install "git+https://github.com/hypothesis/gha-token.git"
+      - name: Get GitHub token
+        id: github_token
+        run: echo GITHUB_TOKEN=$(gha-token --app-id <APP_ID> --installation-id <INSTALLATION_ID> --private-key "$PRIVATE_KEY") >> $GITHUB_OUTPUT
+        env:
+          PRIVATE_KEY: ${{ secrets.MY_GITHUB_APP_PRIVATE_KEY }}
+        run: gh workflow run --repo nzolot/repo-dst
+        env:
+          GITHUB_TOKEN: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
