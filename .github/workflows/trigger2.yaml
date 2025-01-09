@@ -18,7 +18,7 @@ jobs:
         run: python3.11 -m pip install "git+https://github.com/hypothesis/gha-token.git"
       - name: Get GitHub token
         id: github_token
-        run: echo GITHUB_TOKEN=$(gha-token --app-id1107154 --installation-id 59359748 --private-key "$PRIVATE_KEY") >> $GITHUB_OUTPUT
+        run: echo GITHUB_TOKEN=$(gha-token --app-id 1107154 --installation-id 59359748 --private-key "$PRIVATE_KEY") >> $GITHUB_OUTPUT
         env:
           PRIVATE_KEY: ${{ secrets.MY_GITHUB_APP_PRIVATE_KEY }}
       - name: Token
