@@ -21,6 +21,7 @@ jobs:
         run: echo GITHUB_TOKEN=$(gha-token --app-id <APP_ID> --installation-id <INSTALLATION_ID> --private-key "$PRIVATE_KEY") >> $GITHUB_OUTPUT
         env:
           PRIVATE_KEY: ${{ secrets.MY_GITHUB_APP_PRIVATE_KEY }}
+      - name: Trigger
         run: gh workflow run --repo nzolot/repo-dst
         env:
           GITHUB_TOKEN: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
